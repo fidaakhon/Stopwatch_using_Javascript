@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        body {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            width: 130px;
+            height: 50px;
+            background: blue;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><u> Stop Watch</u></h1>
+        <h1 id="shw"></h1>
+        <div class="btn">
+        <button onclick="_start()">Start / Resume</button>
+        <button onclick="_stop()">Stop</button>
+        <button onclick="_GoToStart()">Go  to Start</button>
+         </div>
+    </div>
+
+
+    <script>
+        let H = 0, M =0 , S=0 ;
+        function _starter() {
+            S++
+                if(S == 60) {
+                    M++;
+                    if(M == 60)
+                    {
+                        H++;
+                        M = 00;
+                    }
+                    S = 00;
+                }
+                document.getElementById('shw').innerHTML = pad(H) + " : " + pad(M) + " : " + pad(S)
+        }
+        function _start() {
+            myinterval = setInterval(_starter, 100)
+        }
+        function _stop() {
+            clearInterval(myinterval)
+        }
+        function _GoToStart() {
+            clearInterval(myinterval)
+            H = 0
+             M =0 
+             S=0
+             document.getElementById('shw').innerHTML = pad(H) + " : " + pad(M) + " : " + pad(S)
+        }
+        document.getElementById('shw').innerHTML = pad(H) + " : " + pad(M) + " : " + pad(S)
+
+
+      function pad(n) {
+        if(n<10)
+        return "0"+n;
+        else
+        return n;
+      }
+       
+    </script>
+</body>
+</html>
